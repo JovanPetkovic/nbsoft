@@ -1,0 +1,54 @@
+html,body{
+    overflow: none;
+}
+
+.slider-container{
+    margin: 20px auto 0 auto;
+    height: 500px;
+    width: 800px;
+}
+
+.slider-container img{
+    height: 500px;
+    width: 800px;
+
+}
+
+.slick-prev{
+    display:block;
+    border:none;
+    background: transparent url('../images/l-arrow.png') center;
+    background-size: 100% 100%;
+    width:60px;
+    height: 60px;
+    color: transparent;
+    position: absolute;
+    z-index: 2;
+    left: -100px;
+    top:50%;
+    transform: translateY(-33%);
+}
+
+.slick-next{
+    border:none;
+    width: 60px;
+    height: 60px;
+    background: transparent url('../images/r-arrow.png') center;
+    background-size: 100% 100%;
+    color: transparent;
+    position: absolute;
+    z-index: 2;
+    left: calc(100% + 30px);
+    top:50%;
+    transform: translateY(-33%);
+}
+
+.slick-dots{
+    display: flex;
+    position: absolute;
+    top:100%;
+    left:50%;
+    transform: translateX(-50%);
+    justify-content: space-between;
+}
+
