@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/public/css/slider.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/folder.css">
 </head>
 <body>
     <header>
-        <form action="modules/Task">
+        <form action="modules/Folder">
             <button type="submit" value="html">Task 1</button>
             <button type="submit" value="form">Task 2</button>
             <button type="submit" value="slider">Task 3</button>
@@ -21,7 +22,7 @@
         </form>
 </header>
     <div id="task-container container">
-        <?php include "templates/slider.php"?>
+        <?php include "templates/folder.php"?>
     </div>
     <script type="text/javascript" src="public/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="public/js/contact.js"></script>\
