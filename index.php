@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>NBSoft - Jovan Petkovic</title>
     <link rel="stylesheet" href="public/css/html.css">
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/form.css">
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
     <header>
@@ -17,9 +18,10 @@
             <button type="submit" value="sql">Task 5</button>
         </form>
 </header>
-    <div id="container">
-        
+    <div id="task-container container">
+        <?php include "templates/form.php"?>
     </div>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="public/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="public/js/contact.js"></script>
 </body>
 </html>
