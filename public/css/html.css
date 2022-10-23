@@ -1,0 +1,75 @@
+#html .section-title{
+    border-bottom: 3px solid black;
+    padding-bottom: 5px;
+}
+
+#container{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#html h2, h1, h3{
+    margin: 0px;
+}
+
+#contact-info {
+    font-weight: normal;
+    padding-bottom: 5px;
+    border-bottom: 3px solid black;
+    margin-bottom: 15px;
+}
+
+
+#contact-info h2{
+    margin-right: 20px;
+}
+
+#contact-info h2{
+    margin-right: 1rem;
+}
+
+#html div{
+    margin: 1rem 0;
+}
+
+#contact-info div{
+    width: 100%;
+    display: flex;
+    margin: 0;
+}
+
+#html ul{
+    padding-left: 15px;
+    font-size: 1.2rem;
+}
+
+#html p{
+    font-size: 1.2rem;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+#html li{
+    margin-top: 0.6rem;
+}
+
+#education div{
+    padding-bottom: 10px;
+}
+
+#education ul{
+    margin: 10px 0;
+}
+
+#job-history ul{
+    margin: 10px 0 0 0;
+}
+
+@media screen and (max-width: 480px) {
+    #contact-info div{
+        display: block;
+    }
+    #contact-info h2{
+        font-size: 1rem;
+    }
+}
