@@ -13,16 +13,23 @@
 </head>
 <body>
     <header>
-        <form action="modules/Folder">
-            <button type="submit" value="html">Task 1</button>
-            <button type="submit" value="form">Task 2</button>
-            <button type="submit" value="slider">Task 3</button>
-            <button type="submit" value="folder">Task 4</button>
-            <button type="submit" value="sql">Task 5</button>
+        <form action="/index.php" method="POST">
+            <button type="submit" name="task" value="html">Task 1</button>
+            <button type="submit" name="task" value="form">Task 2</button>
+            <button type="submit" name="task" value="slider">Task 3</button>
+            <button type="submit" name="task" value="folder">Task 4</button>
+            <button type="submit" name="task" value="sql">Task 5</button>
         </form>
 </header>
     <div id="task-container container">
-        <?php include "templates/folder.php"?>
+
+        <?php
+            if(isset($_POST['task']))
+            {
+                $d = "templates/" . $_POST['task'] . ".php";
+                include $d;
+            }
+        ?>
     </div>
     <script type="text/javascript" src="public/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="public/js/contact.js"></script>\
