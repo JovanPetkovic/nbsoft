@@ -24,6 +24,7 @@
     <div id="task-container container">
 
         <?php
+            error_reporting(E_ALL);
             if(isset($_POST['task']))
             {
                 $d = "templates/" . $_POST['task'] . ".php";

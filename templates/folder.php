@@ -1,31 +1,45 @@
 <?php
-    $realPath = $_SERVER['DOCUMENT_ROOT'];
 
-    if(isset($_POST['back'])){
-        $realPath = dirname($realPath);
-        scanFolder($realPath);
-    }
-    else {
-        if (!isset($_POST['nextFolder'])) {
-            scanFolder($realPath);
-        } else {
-            $realPath = $_POST['nextFolder'];
+    folderNavigation();
+
+    function folderNavigation()
+    {
+        $fs = fopen('/mnt/data/webdev/nbsoft/index.php', 'r') or die("NE radi");
+        if(isset($_POST['nextFolder']))
+        {
             scanFolder($_POST['nextFolder']);
         }
+        else
+        {
+            scanFolder($_SERVER['DOCUMENT_ROOT']);
+        }
     }
+
     function scanFolder($path)
     {
-        $folderContent = scandir($path);
-        echo "<form id='folderScreen' class='list-group' method='POST' action='/index.php'>";
-        echo "<input type='submit' name='back' value='Back' class='btn btn-secondary' />";
-        foreach ($folderContent as $key => $value){
-            if($key<3){
-                continue;
+        if(is_dir($path)) {
+            $folderContent = scandir($path);
+            echo "<form id='folderScreen' class='list-group' method='POST' action=''>";
+            echo "<button type='submit' name='nextFolder' value='". dirname($path) ."' class='btn btn-secondary'>Back</button>";
+            echo "<input style='display : none' type='text' name='task' value='folder'/>";
+            foreach ($folderContent as $key => $value) {
+                if ($key < 3) {
+                    continue;
+                }
+
+
+                echo "<button type='submit' name='nextFolder' class='list-group-item' value='" . $path . '/' . $value . "'>"
+                . $value . "</button>";
             }
-
-
-            echo "<input type='submit' name='nextFolder' class='list-group-item' value='". $path . '/' . $value ."'/>";
+            echo "</form>";
         }
-        echo "</form>";
+        else
+        {   
+            clearstatcache();
+            scanFolder(dirname($path));
+            $fo = fopen($path, 'r') or die("Nece da radi");
+            $fr = fread($fo, filesize($path));
+            echo "<div id='file'>" . "<p>" . $fr . "</p></div>";
+        }
     }
 ?>
