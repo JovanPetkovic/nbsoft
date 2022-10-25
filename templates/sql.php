@@ -1,11 +1,12 @@
 <?php
+
     $db = dbConnect();
     sql($db);
     $db->close();
     function sql($db){
-        dvaDana($db);
-        imePorudzbinaVrednost($db);
-        dvePorudzbine($db);
+        sqlA($db);
+        sqlB($db);
+        sqlC($db);
         sqlD($db);
         sqlE($db);
         sqlF($db);
@@ -29,14 +30,19 @@
         $brojStavki[] = Array();
         while($row = $query->fetch_assoc())
         {
-            $brojStavki[$row['orderId']]++;
+            if(isset($brojStavki[$row['orderId']]))
+            {
+                $brojStavki[$row['orderId']]++;
+            }
         }
         $query = $db->query('SELECT Orders.id, Users.firstname, Users.lastname FROM Orders INNER JOIN
                             Users ON Orders.userId = Users.id');
         while($row = $query->fetch_assoc())
         {
-            echo $row['id'] . " | " . $row['firstname'] . " | " . $row['lastname'] . " | " . $brojStavki[$row['id']] . "<br>";
-
+            if(isset($row['id'] ,$row['firstname'], $row['lastname'], $brojStavki[$row['id']]))
+            {
+                echo $row['id'] . " | " . $row['firstname'] . " | " . $row['lastname'] . " | " . $brojStavki[$row['id']] . "<br>";
+            }
         }
     }
 
@@ -46,16 +52,21 @@
         $brojStavki[] = Array();
         while($row = $query->fetch_assoc())
         {
-            $brojStavki[$row['orderId']]++;
+            if(isset($brojStavki[$row['orderId']]))
+            {
+                $brojStavki[$row['orderId']]++;
+            }
         }
         $query = $db->query('SELECT Orders.id, Users.firstname, Users.lastname FROM Orders INNER JOIN
                                 Users ON Orders.userId = Users.id');
         while($row = $query->fetch_assoc())
         {
-            if($brojStavki[$row['id']]<2)
+
+            if(isset($brojStavki[$row['id']])&&$brojStavki[$row['id']]<2)
             {
                 continue;
             }
+            if(isset($row['id'] ,$row['firstname'], $row['lastname'], $brojStavki[$row['id']]))
             echo $row['id'] . " | " . $row['firstname'] . " | " . $row['lastname'] . " | " . $brojStavki[$row['id']] . "<br>";
 
         }
@@ -73,31 +84,22 @@
         
     }
 
-    function dvePorudzbine($db)
+    function sqlC($db)
     {
-        $query = $db->query('SELECT userId FROM Orders');
-        $arr[] = Array();
-        while($row = $query->fetch_assoc())
-        {
-            $arr[$row['userId']]++;
-        }
-        $query = $db->query('SELECT * FROM Users');
-        while($row = $query->fetch_assoc())
-        {
-            if($arr[$row['id']]>1)
-            {
-                print_r($row);
-            }
-        }
+        $query = $db->query("select * from (select Users.*,count(Orders.userId) as orderCount from Users
+                            inner join Orders on Users.id = Orders.userId
+                            group by Users.id) t
+                            where orderCount >= 2");
+        sqlPrint($query);
     }
 
-    function imePorudzbinaVrednost($db)
+    function sqlB($db)
     {
         $query = $db->query('SELECT Orders.id, Orders.value, Users.firstname, Users.lastname FROM Orders
                             INNER JOIN Users ON Orders.userId = Users.id');
         sqlPrint($query);
     }
-    function dvaDana($db)
+    function sqlA($db)
     {
         $query =  $db->query('SELECT * FROM Users WHERE DATE(dateCreate) > "2022-10-23"');
         sqlPrint($query);
