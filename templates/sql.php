@@ -8,6 +8,7 @@
         dvePorudzbine($db);
         sqlD($db);
         sqlE($db);
+        sqlF($db);
     }
 
     function sqlPrint($query)
@@ -58,6 +59,18 @@
             echo $row['id'] . " | " . $row['firstname'] . " | " . $row['lastname'] . " | " . $brojStavki[$row['id']] . "<br>";
 
         }
+    }
+
+    function sqlF($db)
+    {
+        $query = $db->query("select * from (select count(productId) as distinctCount, id as userId from (select distinct(OrderItems.productId), Users.id, Orders.id as orderId from Users 
+                            inner join Orders on Users.id =  Orders.userId
+                            inner join OrderItems on Orders.id = OrderItems.orderId) t
+                             group by orderId) t2
+                            inner join Users on Users.id = userId
+                            where distinctCount > 2;");
+        sqlPrint($query);
+        
     }
 
     function dvePorudzbine($db)
