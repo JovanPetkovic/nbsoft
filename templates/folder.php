@@ -34,7 +34,7 @@
             echo "</form>";
         }
         else
-        {   
+        {
             clearstatcache();
             scanFolder(dirname($path));
             $fo = fopen($path, 'r') or die("Nece da radi");
