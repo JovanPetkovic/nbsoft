@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "value": 75,
+    "dateCreate": "2022-10-15",
+    "dateEdit": "2022-10-16",
+    "userId": 1
+  }  {
+    "id": 2,
+    "value": 90,
+    "dateCreate": "2022-10-24",
+    "dateEdit": "2022-10-25",
+    "userId": 2
+  }  {
+    "id": 3,
+    "value": 20,
+    "dateCreate": "2022-10-25",
+    "dateEdit": "2022-10-25",
+    "userId": 3
+  }  {
+    "id": 4,
+    "value": null,
+    "dateCreate": null,
+    "dateEdit": null,
+    "userId": 2
+  }
+]

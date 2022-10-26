@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "firstname": "Jovan",
+    "lastname": "Petkovic",
+    "phone": "32436546",
+    "email": "jp@gmail.com",
+    "dateCreate": "2004-04-04",
+    "dateEdit": "2004-04-08"
+  }  {
+    "id": 2,
+    "firstname": "Nikola",
+    "lastname": "Nikolic",
+    "phone": "9345893409",
+    "email": "nn@gmail.com",
+    "dateCreate": "2022-10-24",
+    "dateEdit": "2022-10-25"
+  }  {
+    "id": 3,
+    "firstname": "Stefan",
+    "lastname": "Markovic",
+    "phone": "933233409",
+    "email": "sm@gmail.com",
+    "dateCreate": "2022-10-01",
+    "dateEdit": "2022-10-25"
+  }  {
+    "id": 4,
+    "firstname": "Jelena",
+    "lastname": "Stevanovic",
+    "phone": "12354213409",
+    "email": "js@gmail.com",
+    "dateCreate": "2020-03-17",
+    "dateEdit": "2022-10-24"
+  }
+]

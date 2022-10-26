@@ -26,50 +26,24 @@
 
     function sqlD($db)
     {
-        $query = $db->query('SELECT orderId FROM OrderItems');
-        $brojStavki[] = Array();
-        while($row = $query->fetch_assoc())
-        {
-            if(isset($brojStavki[$row['orderId']]))
-            {
-                $brojStavki[$row['orderId']]++;
-            }
-        }
-        $query = $db->query('SELECT Orders.id, Users.firstname, Users.lastname FROM Orders INNER JOIN
-                            Users ON Orders.userId = Users.id');
-        while($row = $query->fetch_assoc())
-        {
-            if(isset($row['id'] ,$row['firstname'], $row['lastname'], $brojStavki[$row['id']]))
-            {
-                echo $row['id'] . " | " . $row['firstname'] . " | " . $row['lastname'] . " | " . $brojStavki[$row['id']] . "<br>";
-            }
-        }
+        $query = $db->query("Select t.firstname, t.lastname, t.id as brojPorudzbine, count(OrderItems.id) as brojStavki from
+                             (SELECT Users.firstname, Users.lastname, Orders.id from Users 
+                            inner join Orders on Users.id = Orders.userId) t
+                            inner join OrderItems on t.id = OrderItems.orderId
+                            group by t.id;");
+        echo "<h2>Sub-task D</h2>";
+        sqlPrint($query);
     }
 
     function sqlE($db)
     {
-        $query = $db->query('SELECT orderId FROM OrderItems');
-        $brojStavki[] = Array();
-        while($row = $query->fetch_assoc())
-        {
-            if(isset($brojStavki[$row['orderId']]))
-            {
-                $brojStavki[$row['orderId']]++;
-            }
-        }
-        $query = $db->query('SELECT Orders.id, Users.firstname, Users.lastname FROM Orders INNER JOIN
-                                Users ON Orders.userId = Users.id');
-        while($row = $query->fetch_assoc())
-        {
-
-            if(isset($brojStavki[$row['id']])&&$brojStavki[$row['id']]<2)
-            {
-                continue;
-            }
-            if(isset($row['id'] ,$row['firstname'], $row['lastname'], $brojStavki[$row['id']]))
-            echo $row['id'] . " | " . $row['firstname'] . " | " . $row['lastname'] . " | " . $brojStavki[$row['id']] . "<br>";
-
-        }
+        $query = $db->query('Select t.firstname, t.lastname, t.id as brojPorudzbine, count(OrderItems.id) as brojStavki from
+                             (SELECT Users.firstname, Users.lastname, Orders.id from Users 
+                            inner join Orders on Users.id = Orders.userId) t
+                            inner join OrderItems on t.id = OrderItems.orderId
+                            group by t.id  having brojStavki >= 2;');
+        echo "<h2>Sub-task E</h2>";
+        sqlPrint($query);
     }
 
     function sqlF($db)
@@ -80,6 +54,7 @@
                              group by orderId) t2
                             inner join Users on Users.id = userId
                             where distinctCount > 2;");
+        echo "<h2>Sub-task F</h2>";
         sqlPrint($query);
         
     }
@@ -90,6 +65,7 @@
                             inner join Orders on Users.id = Orders.userId
                             group by Users.id) t
                             where orderCount >= 2");
+        echo "<h2>Sub-task C</h2>";
         sqlPrint($query);
     }
 
@@ -97,11 +73,13 @@
     {
         $query = $db->query('SELECT Orders.id, Orders.value, Users.firstname, Users.lastname FROM Orders
                             INNER JOIN Users ON Orders.userId = Users.id');
+        echo "<h2>Sub-task B</h2>";
         sqlPrint($query);
     }
     function sqlA($db)
     {
         $query =  $db->query('SELECT * FROM Users WHERE DATE(dateCreate) > "2022-10-23"');
+        echo "<h2>Sub-task A</h2>";
         sqlPrint($query);
     }
 
