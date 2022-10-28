@@ -5,6 +5,12 @@
 This is a project for 3rd round of interview for a IT Firm NBSoft Web Solutions.
 Project consists of 5 tasks employing different aspects of web development. 
 
+## Installation and Usage
+
+This is a single-page project. You should start the server where index.php README.md, .gitignore, etc. are located. At the top of
+the home page you can select which task you want to see, and it will show in the container below buttons for task switching.
+You can switch to solution for another task at any moment by clicking the task button.
+
 ## Tasks
 
 ### HTML  
